@@ -1,0 +1,36 @@
+name: Test Application
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: 'src/package-lock.json'
+      
+      - name: Install dependencies
+        working-directory: ./src
+        run: npm ci
+      
+      - name: Check syntax
+        working-directory: ./src
+        run: |
+          node -c server.js
+          npx eslint server.js --no-eslintrc --env node || true
+      
+      - name: Verify package.json
+        working-directory: ./src
+        run: |
+          npm audit --audit-level=moderate || true
+          npm outdated || true

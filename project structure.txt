@@ -1,0 +1,10 @@
+src/
+├── server.js          # Main backend server
+├── package.json       # Dependencies
+├── public/            # Frontend files
+│   ├── index.html     # Main application
+│   └── uploads/       # File uploads
+└── database.db        # SQLite database (created on first run)
+
+docs/                  # GitHub Pages documentation
+.github/workflows/     # GitHub Actions workflows

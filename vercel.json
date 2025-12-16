@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "buildCommand": "echo 'Static frontend only - use Railway for full app'",
+  "outputDirectory": "src/public"
+}
